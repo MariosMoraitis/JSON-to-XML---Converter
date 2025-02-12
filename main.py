@@ -38,7 +38,7 @@ def open_file_button_click() -> None:
 
 # Initialize the main window
 root = ctk.CTk()
-root.title('Soap Converter')
+root.title('XML Converter')
 root.geometry('800x230')
 root.resizable(False, False)
 
