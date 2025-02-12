@@ -3,7 +3,7 @@
 Welcome to the **JSON to XML Converter**! This application is designed to provide a simple, intuitive interface for converitng JSON files to XML. Whether you're a developer or a non-technical user, this app is built with ease of use in mind.
 
 ## Standalone Version
-You can download the standalone executable for your platform from the releases page, and run it without installing Python.
+You can download the standalone executable for your platform from the [Release Page](https://github.com/MariosMoraitis/XML-Converter/releases/tag/version_1.0), and run it without installing Python.
 
 ## 💡 Usage
 Open the app and load your JSON file by clicking the "Browse" button.
