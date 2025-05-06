@@ -45,15 +45,15 @@ def json_to_xml(json_obj, indent=""):
 
     return "\n".join(result_list)
 
-def add_prefix(xml_file, prefix: str):
+def add_prefix(xml_file, prefix: str) -> None:
     import re
     with open(xml_file,'r', encoding='utf-8') as f:
-        lines = f.readlines()
+        lines: list[str] = f.readlines()
     
-    updated_lines = []
+    updated_lines: list[str] = []
     for line in lines:
         # Replace </ with </prof: and < with <prof:, but avoid double-replacing
-        line = re.sub(r'</(\w+)', fr'</{prefix}:\1', line)
+        line: str = re.sub(r'</(\w+)', fr'</{prefix}:\1', line)
         line = re.sub(r'<(\w+)', fr'<{prefix}:\1', line)
         updated_lines.append(line)
     
@@ -66,7 +66,7 @@ def prepare_n_write(json_path:str, prefix: str) -> str:
 
     Args:
         json_path (str): User's JSON file path.
-        prefix (str | None): User's desired prefix to be added.
+        prefix (str): User's desired prefix to be added.
 
     Returns:
         str: Generated file's path.
