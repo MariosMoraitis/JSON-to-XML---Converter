@@ -1,7 +1,6 @@
 import json
 import os
 import datetime
-#import xml.etree.ElementTree as ET
 
 def file_exists(output_path: str) -> str | None:
     """ Checks if output file already and extends it's name with current timer
@@ -46,12 +45,28 @@ def json_to_xml(json_obj, indent=""):
 
     return "\n".join(result_list)
 
+def add_prefix(xml_file, prefix: str):
+    import re
+    with open(xml_file,'r', encoding='utf-8') as f:
+        lines = f.readlines()
+    
+    updated_lines = []
+    for line in lines:
+        # Replace </ with </prof: and < with <prof:, but avoid double-replacing
+        line = re.sub(r'</(\w+)', fr'</{prefix}:\1', line)
+        line = re.sub(r'<(\w+)', fr'<{prefix}:\1', line)
+        updated_lines.append(line)
+    
+    with open(xml_file, 'w', encoding='utf-8') as f:
+        f.writelines(updated_lines)
 
-def prepare_n_write(json_path:str) -> str:
+
+def prepare_n_write(json_path:str, prefix: str) -> str:
     """ main function of the script
 
     Args:
         json_path (str): User's JSON file path.
+        prefix (str | None): User's desired prefix to be added.
 
     Returns:
         str: Generated file's path.
@@ -71,9 +86,10 @@ def prepare_n_write(json_path:str) -> str:
 
     with open(output_file,'w', encoding='utf-8') as xm_file:
         xm_file.write(xml_string)
-        # xml_file.write(f"<root>\n{xml_string}\n</root>")
+        
+    if prefix.__len__() > 0:
+        add_prefix(output_file, prefix)
 
-    # print("XML file has been created: output.xml")
     return output_file
 
 # if __name__ == '__main__':
