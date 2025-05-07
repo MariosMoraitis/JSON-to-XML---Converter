@@ -29,21 +29,24 @@ def json_to_xml(json_obj, indent=""):
     Returns:
         XML data to be written in a new file.
     """
+    try:
+        result_list = []
 
-    result_list = []
+        if isinstance(json_obj, dict):
+            for tag_name, sub_obj in json_obj.items():
+                if "$" in tag_name:
+                    continue  # Skip tags with <$>
+                result_list.append(f"{indent}<{tag_name}>{json_to_xml(sub_obj, indent)}</{tag_name}>")
+        elif isinstance(json_obj, list):
+            for sub_obj in json_obj:
+                result_list.append(json_to_xml(sub_obj, indent))
+        else:
+            return str(json_obj)
 
-    if isinstance(json_obj, dict):
-        for tag_name, sub_obj in json_obj.items():
-            if "$" in tag_name:
-                continue  # Skip tags with <$>
-            result_list.append(f"{indent}<{tag_name}>{json_to_xml(sub_obj, indent)}</{tag_name}>")
-    elif isinstance(json_obj, list):
-        for sub_obj in json_obj:
-            result_list.append(json_to_xml(sub_obj, indent))
-    else:
-        return str(json_obj)
-
-    return "\n".join(result_list)
+        return "\n".join(result_list)
+    
+    except Exception as e:
+        return f'JSON_ERROR: {str(e)}'
 
 def add_prefix(xml_file, prefix: str) -> None:
     import re
@@ -52,7 +55,7 @@ def add_prefix(xml_file, prefix: str) -> None:
     
     updated_lines: list[str] = []
     for line in lines:
-        # Replace </ with </prof: and < with <prof:, but avoid double-replacing
+        # Replace </ with </prefix: and < with <prefix:, but avoid double-replacing
         line: str = re.sub(r'</(\w+)', fr'</{prefix}:\1', line)
         line = re.sub(r'<(\w+)', fr'<{prefix}:\1', line)
         updated_lines.append(line)
@@ -71,12 +74,17 @@ def prepare_n_write(json_path:str, prefix: str) -> str:
     Returns:
         str: Generated file's path.
     """
-    # Load JSON from file
-    with open(json_path, "r") as json_file:
-        json_data = json.load(json_file)
+    try:
+        # Load JSON from file
+        with open(json_path, "r") as json_file:
+            json_data = json.load(json_file)
+    except Exception as e:
+        return str(e)
 
     xml_string = json_to_xml(json_data, indent="")
-
+    if xml_string.startswith('JSON_ERROR: '):
+        return xml_string
+    
     # Save to XML file
     output_file:str = "output.txt"
     check_file: str | None = file_exists(output_file)
@@ -90,7 +98,7 @@ def prepare_n_write(json_path:str, prefix: str) -> str:
     if prefix.__len__() > 0:
         add_prefix(output_file, prefix)
 
-    return output_file
+    return f'Saved at: {output_file}'
 
 # if __name__ == '__main__':
 #     prepare_n_write()

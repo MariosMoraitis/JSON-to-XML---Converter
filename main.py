@@ -19,8 +19,8 @@ def json_button_click() -> None:
         check_conditions()
 
 def convert_button_click() -> None:
-    output_xml = prepare_n_write(json_stored_path[0], prefix_entry.get())
-    result_label.configure(text="Saved at: " + str(output_xml))
+    output_xml: str = prepare_n_write(json_stored_path[0], prefix_entry.get())
+    result_label.configure(text = output_xml)
     output_stored_path.append(output_xml)
     open_file_button.pack(pady=(5, 0))
 
