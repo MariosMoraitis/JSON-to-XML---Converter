@@ -1,6 +1,6 @@
 # 🖥️ JSON to XML Converter
 
-Welcome to the **JSON to XML Converter**! This application is designed to provide a simple, intuitive interface for converitng JSON files to XML. Whether you're a developer or a non-technical user, this app is built with ease of use in mind.
+Welcome to the **JSON to XML Converter**! This application is designed to provide a simple, intuitive interface for converting JSON files to XML. Whether you're a developer or a non-technical user, this app is built with ease of use in mind.
 
 ## Standalone Version
 You can download the standalone executable for your platform from the [Release Page](https://github.com/MariosMoraitis/XML-Converter/releases/tag/version_1.0), and run it without installing Python.
@@ -13,7 +13,7 @@ Click the "Convert" button to transform the JSON into XML format.
 ## ✨ Features
 
 - **Simple Conversion**: Quickly convert JSON files to XML with just a few clicks.
-- - **Add Prefix**: Optionally add a prefix you would like for the XML tags, that your JSON file lacks.
+- **Add Prefix**: Optionally add a prefix you would like for the XML tags, that your JSON file lacks.
 - **User-friendly Interface**: Built using the `customtkinter` library for a clean and responsive graphical interface.
 - **Supports Multiple JSON Formats**: Handles various structures of JSON data for seamless conversion.
 - **Stand-alone Application**: Run the app without needing Python installed, thanks to PyInstaller packaging.
