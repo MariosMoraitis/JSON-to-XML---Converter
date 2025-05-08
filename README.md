@@ -13,6 +13,7 @@ Click the "Convert" button to transform the JSON into XML format.
 ## ✨ Features
 
 - **Simple Conversion**: Quickly convert JSON files to XML with just a few clicks.
+- - **Add Prefix**: Optionally add a prefix you would like for the XML tags, that your JSON file lacks.
 - **User-friendly Interface**: Built using the `customtkinter` library for a clean and responsive graphical interface.
 - **Supports Multiple JSON Formats**: Handles various structures of JSON data for seamless conversion.
 - **Stand-alone Application**: Run the app without needing Python installed, thanks to PyInstaller packaging.
