@@ -95,7 +95,7 @@ def prepare_n_write(json_path:str, prefix: str) -> str:
     with open(output_file,'w', encoding='utf-8') as xm_file:
         xm_file.write(xml_string)
         
-    if prefix.__len__() > 0:
+    if len(prefix) > 0:
         add_prefix(output_file, prefix)
 
     return f'Saved at: {output_file}'

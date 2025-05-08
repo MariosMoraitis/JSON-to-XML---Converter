@@ -1,2 +1,4 @@
 test.json
 pyinstaller.exe
+dist/LICENSE.txt
+dist/xml_converter.exe
